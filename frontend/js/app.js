@@ -1,4 +1,6 @@
 let app = {
+
+    apiRootUrl: 'http://localhost:8080/',
     init: function() {
         console.log('app.init()');
 
