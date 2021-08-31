@@ -1,6 +1,6 @@
 let app = {
 
-    apiRootUrl: 'http://localhost:8090/',
+    apiRootUrl: 'http://localhost:8080/',
     init: function() {
         console.log('app.init()');
 
@@ -52,28 +52,78 @@ let app = {
         const config = {
             method: 'GET',
             mode: 'cors',
-            // Veut-on que la réponse puisse être mise en cache par le navigateur ?
-        // Non durant le développement, oui en production.
             cache: 'no-cache',
             
             
             };
         //TODO faire le fetch
         fetch(app.apiRootUrl + "videogames/"+ idNewReview +"/reviews")
-        .then(
-            function(response) {
-                    console.log(response);
-                // Si HTTP status code à 200 => OK
-                if (response.status == 200) {
-                                    
-                    console.log('Modif ok')
-                    // todo afficher les reviews en utilisant le template
+        .then(function(response) {return response.json();})
+            
+            .then(function(jsonDatas) {
+                console.log(jsonDatas);  
+                 
+                for (const jsonData of jsonDatas) {
+                  
                     
+                    // get template
+                    const reviewTemplate = document.querySelector('#reviewTemplate');
+                    const documentFragment = reviewTemplate.content.cloneNode(true);
+                    
+                    // get data from API
+                    const idReview = jsonData.id;
+                    const authorReview = jsonData.author;
+                    const dateReview = jsonData.created_at;
+                    const textReview = jsonData.text;
+                    const titleReview = jsonData.title;
+                    const editorReview = jsonData.platform.manufacturer;
+                    const platformReview = jsonData.platform.name;
+                    const display_noteReview = jsonData.display_note;
+                    const gameplay_noteReview = jsonData.gameplay_note;
+                    const scenario_noteReview = jsonData.scenario_note;
+                    const lifetime_noteReview = jsonData.lifetime_note;
+
+                    
+                  
+                    
+                    // get placement to send input
+                    const authorInput = documentFragment.querySelector('.reviewAuthor');
+                    const dateInput = documentFragment.querySelector('.reviewPublication');
+                    const textInput = documentFragment.querySelector('.reviewText');
+                    const titleInput = documentFragment.querySelector('.reviewVideogame');
+                    const editorInput = documentFragment.querySelector('.reviewEditor');
+                    const platformInput = documentFragment.querySelector('.reviewPlatform');
+                    const display_noteInput = documentFragment.querySelector('.reviewDisplay');
+                    const gameplay_noteInput = documentFragment.querySelector('.reviewGameplay');
+                    const scenario_noteInput = documentFragment.querySelector('.reviewScenario');
+                    const lifetime_noteInput = documentFragment.querySelector('.reviewLifetime');
+
+ 
+                    // Affectation des valeurs retournées par l'API aux elements HTML
+                    authorInput.innerHTML = authorReview
+                    dateInput.innerHTML = dateReview
+                    textInput.innerHTML = textReview
+                    titleInput.innerHTML = titleReview
+                    editorInput.innerHTML = editorReview
+                    platformInput.innerHTML = platformReview
+                    display_noteInput.innerHTML = display_noteReview
+                    gameplay_noteInput.innerHTML = gameplay_noteReview
+                    scenario_noteInput.innerHTML = scenario_noteReview
+                    lifetime_noteInput.innerHTML = lifetime_noteReview
+                   
+                   
+                    
+                    const divReview = documentFragment.querySelector('.reviewContainer');
+                    console.log(divReview);
+                    // appendChild du clone
+                    const reviewList = document.querySelector('#review');
+                    // attention à ne pas prendre le documentFragment mais bien la DIV
+                    reviewList.appendChild(divReview);
+
+                    
+                   
                 }
-                else {
-                    alert('La modification à echoué :'+response.status);
-                }
-            }
+            }   
         )
         
     }

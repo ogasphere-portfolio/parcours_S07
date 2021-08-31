@@ -13,4 +13,8 @@ class Platform extends Model
     {
         return $this->hasMany(Review::class);
     }
+    public function videogame()
+    {
+        return $this->hasMany(Videogame::class);
+    }
 }
