@@ -140,8 +140,7 @@ let app = {
         
      //   event.preventDefault();
         
-        // je récupère mon template
-        const taskTemplate = document.querySelector('#empty-task');
+       
     
     
         // je récupére les valeurs saisies dans mon formumaire
