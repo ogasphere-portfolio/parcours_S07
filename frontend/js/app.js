@@ -43,8 +43,7 @@ let app = {
     },
 
     handleChangeReviewFilter: function(event){
-       
-
+ 
         const selectReview = document.querySelector('#videogameId');
         const idNewReview = selectReview.value;
         console.log(idNewReview);
@@ -53,10 +52,8 @@ let app = {
             method: 'GET',
             mode: 'cors',
             cache: 'no-cache',
-            
-            
             };
-        //TODO faire le fetch
+      
         fetch(app.apiRootUrl + "videogames/"+ idNewReview +"/reviews")
         .then(function(response) {return response.json();})
             
@@ -64,8 +61,7 @@ let app = {
                 console.log(jsonDatas);  
                  
                 for (const jsonData of jsonDatas) {
-                  
-                    
+                
                     // get template
                     const reviewTemplate = document.querySelector('#reviewTemplate');
                     const documentFragment = reviewTemplate.content.cloneNode(true);
@@ -83,9 +79,6 @@ let app = {
                     const scenario_noteReview = jsonData.scenario_note;
                     const lifetime_noteReview = jsonData.lifetime_note;
 
-                    
-                  
-                    
                     // get placement to send input
                     const authorInput = documentFragment.querySelector('.reviewAuthor');
                     const dateInput = documentFragment.querySelector('.reviewPublication');
@@ -98,8 +91,7 @@ let app = {
                     const scenario_noteInput = documentFragment.querySelector('.reviewScenario');
                     const lifetime_noteInput = documentFragment.querySelector('.reviewLifetime');
 
- 
-                    // Affectation des valeurs retournées par l'API aux elements HTML
+                    // binding
                     authorInput.innerHTML = authorReview
                     dateInput.innerHTML = dateReview
                     textInput.innerHTML = textReview
@@ -110,18 +102,13 @@ let app = {
                     gameplay_noteInput.innerHTML = gameplay_noteReview
                     scenario_noteInput.innerHTML = scenario_noteReview
                     lifetime_noteInput.innerHTML = lifetime_noteReview
-                   
-                   
-                    
+
+                    // get div container
                     const divReview = documentFragment.querySelector('.reviewContainer');
-                    console.log(divReview);
-                    // appendChild du clone
+                    // appendChild of clone
                     const reviewList = document.querySelector('#review');
-                    // attention à ne pas prendre le documentFragment mais bien la DIV
                     reviewList.appendChild(divReview);
 
-                    
-                   
                 }
             }   
         )
