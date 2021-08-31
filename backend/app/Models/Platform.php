@@ -4,19 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Videogame extends Model
+class Platform extends Model
 {
-
-    protected $fillable = ['id','name','editor'];
     /**
      * Get all related reviews
      */
-    public function reviews()
+    public function platforms()
     {
         return $this->hasMany(Review::class);
     }
-    public function platform()
+    public function videogame()
     {
-        return $this->hasMany(Platform::class);
+        return $this->hasMany(Videogame::class);
     }
 }

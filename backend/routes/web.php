@@ -29,6 +29,22 @@ $router->get(
     ]
 );
 
+$router->get(
+    'videogames',
+    [
+        'as' => 'videogame-list',
+        'uses' => 'VideogameController@list'
+    ]
+);
+
+$router->post(
+    '/videogames',
+    [
+        'uses' => 'VideogameController@create',
+        'as'   => 'Videogame-create'
+    ]
+);
+
 
 // --------- REVIEWS ---------
 
@@ -39,3 +55,4 @@ $router->get(
         'uses' => 'ReviewController@list'
     ]
 );
+
