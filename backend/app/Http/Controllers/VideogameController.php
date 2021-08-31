@@ -8,13 +8,18 @@ use Illuminate\Http\Request;
 class VideogameController extends Controller
 {
 
+    /**
+     * create
+     *
+     * @param  mixed $request
+     * @return void
+     */
     public function create(Request $request){
 
         $this->validate($request, [
             'name' => 'required',
             'editor' => 'required',
         ]);
-
 
         $videoGames = Videogame::create($request->all());
 
@@ -42,7 +47,7 @@ class VideogameController extends Controller
             // HTTP status code 404 Not Found
             return $this->sendEmptyResponse(404);
         }
-      
+
     }
     /**
      * /videogames/[id]

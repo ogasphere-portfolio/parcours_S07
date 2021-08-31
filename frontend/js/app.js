@@ -151,6 +151,22 @@ let app = {
         const newName = inputName.value;
         const newEditor = inputEditor.value;
 
+        // controle de la saisie
+        if(newName == "" || newEditor == "")
+        {
+            console.log('test');
+            event.preventDefault();
+            document.getElementById("erreur").innerHTML = "Tous les champs du formulaire doivent être remplis";
+            document.getElementById("erreur").style.color="red";
+            document.getElementById("name_form").style.borderColor="red";
+            document.getElementById("erreur").style.backgroundColor = "green";
+             
+            setTimeout(function()
+            {
+             document.getElementById('erreur').innerHTML = "";
+            },8000);
+        }
+
         // données à envoyer à l'API pour ajouter le jeux
         data = {
             "name" : newName,
@@ -174,8 +190,11 @@ let app = {
         .then(function(response){
             
             if (response.status == 200) {
+
+                // todo afficher un message de succés
                 return response.json();
             } else {
+                 // todo afficher un message d'echec
                 alert('L\'ajout a échoué '+response.status);
             }
 
@@ -190,11 +209,7 @@ let app = {
                         option.innerText =responseJson.name;
                         option.value = responseJson.id
                         selectVideoGames.appendChild(option);
-                    
-                        console.log('ajout effectué');
-                    
-                
-                
+
             })
        
     }
