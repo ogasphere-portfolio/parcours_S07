@@ -8,6 +8,21 @@ use Illuminate\Http\Request;
 class VideogameController extends Controller
 {
 
+    public function create(Request $request){
+
+        $this->validate($request, [
+            'name' => 'required',
+            'editor' => 'required',
+        ]);
+
+
+        $videoGames = Videogame::create($request->all());
+
+       if ($videoGames->save()) {
+        return $this->sendJsonResponse($videoGames, 200);
+       }
+
+    }
 
     /**
      * list

@@ -37,6 +37,15 @@ $router->get(
     ]
 );
 
+$router->post(
+    '/videogames',
+    [
+        'uses' => 'VideogameController@create',
+        'as'   => 'Videogame-create'
+    ]
+);
+
+
 // --------- REVIEWS ---------
 
 $router->get(
