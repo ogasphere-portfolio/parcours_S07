@@ -4,12 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Videogame extends Model
+class Platform extends Model
 {
     /**
      * Get all related reviews
      */
-    public function reviews()
+    public function platforms()
     {
         return $this->hasMany(Review::class);
     }
