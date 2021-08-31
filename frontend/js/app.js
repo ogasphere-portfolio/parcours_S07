@@ -26,19 +26,14 @@ let app = {
         let addVideogameButtonElement = document.getElementById('btnAddVideogame');
         // On ajoute l'écouteur pour l'event "click"
         addVideogameButtonElement.addEventListener('click', app.handleClickToAddVideogame);
+
+        // handle Form submit
+        const formElement = document.querySelector('#addVideogameForm');
+        formElement.addEventListener("submit", app.handleFormSubmit);
         
        
     },
-    handleVideogameSelected: function(evt) {
-        // Récupérer la valeur du <select> (id du videogame)
-
-        // Vider le contenu de div#review
-
-        // charger les données pour ce videogame
-            // Dupliquer la template #reviewTemplate et personnaliser son contenu avec les données
-
-            // Ajouter dans le DOM
-    },
+    
     handleClickToAddVideogame: function(evt) {
         // https://getbootstrap.com/docs/4.4/components/modal/#modalshow
         // jQuery obligatoire ici
@@ -139,7 +134,72 @@ let app = {
             }   
         )
         
+    },
+
+    handleFormSubmit: function (event) {
+        
+     //   event.preventDefault();
+        
+        // je récupère mon template
+        const taskTemplate = document.querySelector('#empty-task');
+    
+    
+        // je récupére les valeurs saisies dans mon formumaire
+        const inputName = document.querySelector('#inputName');
+        const inputEditor = document.querySelector('#inputEditor');
+
+        const newName = inputName.value;
+        const newEditor = inputEditor.value;
+
+        // données à envoyer à l'API pour ajouter le jeux
+        data = {
+            "name" : newName,
+            "editor" : newEditor,
+            "statut" : 1
+        };
+        
+        // je prépare l'entête pour mon fetch POST
+        const httpHeaders = new Headers();
+        httpHeaders.append("Content-Type", "application/json");
+    
+        const fetchOptions = {
+            method: 'POST',
+            mode: 'cors',
+            cache: 'no-cache',
+            headers: httpHeaders,
+            body: JSON.stringify(data)
+        };
+    
+        fetch(app.apiRootUrl + "videogames", fetchOptions)
+        .then(function(response){
+            
+            if (response.status == 200) {
+                return response.json();
+            } else {
+                alert('L\'ajout a échoué '+response.status);
+            }
+
+        })
+        
+            .then(function(responseJson){   // je récupére la réponse de l'ajout
+ 
+                        // j'insére mon nouvel élémént crée dans le select
+                        const selectVideoGames = document.querySelector('#videogameId')
+                        // Je crée l'option
+                        const option = document.createElement('option');
+                        option.innerText =responseJson.name;
+                        option.value = responseJson.id
+                        selectVideoGames.appendChild(option);
+                    
+                        console.log('ajout effectué');
+                    
+                
+                
+            })
+       
     }
 };
+
+
 
 document.addEventListener('DOMContentLoaded', app.init);

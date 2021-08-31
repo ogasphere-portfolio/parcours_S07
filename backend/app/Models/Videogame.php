@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Videogame extends Model
 {
+
+    protected $fillable = ['id','name','editor'];
     /**
      * Get all related reviews
      */

@@ -33,8 +33,16 @@ class VideogameController extends Controller
         // Get all items
         $list = Videogame::all();
 
-        // Return JSON of this list
-        return $this->sendJsonResponse($list, 200);
+        if (!empty($list)) {
+            // Return JSON of this list
+            return $this->sendJsonResponse($list, 200);
+        }
+        // Sinon
+        else {
+            // HTTP status code 404 Not Found
+            return $this->sendEmptyResponse(404);
+        }
+      
     }
     /**
      * /videogames/[id]
