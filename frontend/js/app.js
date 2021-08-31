@@ -73,13 +73,12 @@ let app = {
  
         const selectReview = document.querySelector('#videogameId');
         const idNewReview = selectReview.value;
-        console.log(idNewReview);
-
-        const config = {
-            method: 'GET',
-            mode: 'cors',
-            cache: 'no-cache',
-            };
+        
+        // suppression des reviews existantes
+        const divDel = document.querySelector('#review');
+        while (divDel.firstChild) {
+            divDel.removeChild(divDel.firstChild);
+        }
       
         fetch(app.apiRootUrl + "videogames/"+ idNewReview +"/reviews")
         .then(function(response) {return response.json();})
