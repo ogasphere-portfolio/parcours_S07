@@ -1,6 +1,13 @@
 let app = {
 
     apiRootUrl: 'http://localhost:8080/',
+
+    videoGames_fetchOptions: {
+        method: 'GET',
+        mode: 'cors',
+        cache: 'no-cache'
+    },
+
     init: function() {
         console.log('app.init()');
 
@@ -37,9 +44,29 @@ let app = {
         // jQuery obligatoire ici
         $('#addVideogameModal').modal('show');
     },
+
     loadVideoGames: function() {
-        // Charger toutes les données des videogames
-            // Ajouter une balise <option> par videogame
+       
+        fetch(app.apiRootUrl + 'videogames', app.videoGames_fetchOptions)
+        
+        .then(function(response){return response.json(); })
+        
+        .then(function(responseJson){
+
+            //  get select element
+            const selectVideoGames = document.querySelector('#videogameId')
+        
+            // je parcours un tableau d'objet (responseJson.category)
+            for (const videogame of responseJson) {
+                // Je crée l'option pour le menu
+                const option = document.createElement('option');
+                console.log(option);
+                option.innerText =videogame.name;
+                option.value = videogame.id;
+                selectVideoGames.appendChild(option);
+            }
+            
+        });
     },
 
     handleChangeReviewFilter: function(event){
@@ -72,7 +99,7 @@ let app = {
                     const dateReview = jsonData.created_at;
                     const textReview = jsonData.text;
                     const titleReview = jsonData.title;
-                    const editorReview = jsonData.platform.manufacturer;
+                    const editorReview = jsonData.videogame.editor;
                     const platformReview = jsonData.platform.name;
                     const display_noteReview = jsonData.display_note;
                     const gameplay_noteReview = jsonData.gameplay_note;
