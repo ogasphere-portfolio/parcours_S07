@@ -1,0 +1,94 @@
+<h1 id="parcours-s07-fire">Parcours S07 🔥</h1>
+<p>On souhaite mettre en place un site permettant de consulter et d'effectuer des <strong>critiques de jeux vidéo</strong>.</p>
+<h2 id="objectifs">Objectifs</h2>
+<ul>
+<li>charger la liste des jeux vidéo dans le menu déroulant</li>
+<li>afficher les reviews après sélection d'un jeu vidéo dans ce menu déroulant</li>
+<li>ajouter un jeu vidéo</li>
+<li>le tout sans jamais recharger la page</li>
+</ul>
+<h2 id="avant-de-commencer">Avant de commencer</h2>
+<p>Pendant la saison 7, nous avons codé dans 2 dépôts (<em>front</em> et <em>back</em>) séparés mais aujourd'hui, pour le parcours, le front et le back sont réunis dans le même dépôt 😨  <br />
+<strong>Pas de panique</strong>, car tout est bien rangé à sa place. 😌</p>
+<h3 id="le-code-front-est-dans-le-répertoire-frontend">Le code front est dans le répertoire <code>frontend</code></h3>
+<ul>
+<li>On y trouve : </li>
+<li>un fichier <code>index.html</code> qui sera la seule page d'accès au site</li>
+<li>un répertoire <code>js</code> qui contient un fichier <code>app.js</code> qui contiendra le module chargé de coder l'application (il n'est pas nécessaire de splitter l'application en plusieurs fichiers/modules)</li>
+<li><a href="frontend/readme.md">Plus de détails ici</a></li>
+</ul>
+<h3 id="le-code-back-est-dans-le-répertoire-backend">Le code back est dans le répertoire <code>backend</code></h3>
+<ul>
+<li>On y trouve : </li>
+<li>une installation de <em>Lumen</em> à finaliser ⚠️  <ul>
+<li>installation des dépendances à faire depuis le répertoire <code>backend</code></li>
+<li>création du fichier de configuration Lumen utile notamment pour l'accès à la base de données</li></ul></li>
+<li>une partie du code back déjà en place avec des routes, des contrôleurs et des modèles, à vous de compléter ce code de départ 💪 </li>
+<li><a href="backend/readme.md">Plus de détails ici</a></li>
+</ul>
+<h2 id="étapes">Étapes</h2>
+<h3 id="0-base-de-données-floppy_disk">#0 Base de données 💾</h3>
+<p>Créer une base de données nommée <code>game-reviews</code> et importer tables et données (fichier docs/import.sql) 🎉</p>
+<p>Dans ce dossier docs/ il y a aussi pas mal de documents intéressants à regarder avant de te lancer.</p>
+<h3 id="1-afficher-les-reviews-eye">#1 Afficher les reviews 👁</h3>
+<p><details><summary>Démo</summary></p>
+<p><img src="img/display_reviews.gif" alt="screenshot_afficher_reviews" /></p>
+<p></details></p>
+<h4 id="backend">Backend</h4>
+<p>Il n'y a rien à faire, le endpoint pour récupérer les reviews est déjà en place.  <br />
+Tu peux le tester avec <em>Insomnia</em>.</p>
+<blockquote>
+  <p>Une configuration pour Insomnia est fournie dans docs/Insomnia<em>import</em>game-reviews.json, que tu peux importer dans le logiciel.</p>
+</blockquote>
+<h4 id="frontend">Frontend</h4>
+<ul>
+<li>lorsque l'internaute sélectionne un jeu vidéo du menu déroulant</li>
+<li>récupérer l'id du jeu vidéo</li>
+<li>effectuer une requête HTTP (Ajax) sur le bon endpoint de l'API, afin de récupérer les reviews de ce jeu vidéo</li>
+<li>une fois la réponse reçue</li>
+<li>pour chaque review<ul>
+<li>cloner la template</li>
+<li>personnaliser les éléments clonés avec les données reçues</li>
+<li>les données reçues ne contiennent pas l'éditeur, ni la plate-forme. Ce n'est pas grave, on va faire sans, on s'en occupera en <strong>bonus</strong></li>
+<li>ajouter les éléments dans le DOM</li></ul></li>
+</ul>
+<h3 id="2-charger-les-jeux-vidéo-camel">#2 Charger les jeux vidéo 🐫</h3>
+<h4 id="backend-1">Backend</h4>
+<ul>
+<li>créer la route, le <em>Controller</em> et le <em>Model</em> (si nécessaire)</li>
+<li>dans la méthode de <em>Controller</em></li>
+<li>récupérer tous les enregistrements de la table <em>videogames</em></li>
+<li>retourner une réponse HTTP avec le code 200, et le JSON</li>
+<li>jetter un 👁 sur le <em>ReviewController</em> peut être utile 😉</li>
+<li>tester avec <em>Insomnia</em></li>
+</ul>
+<h4 id="frontend-1">Frontend</h4>
+<ul>
+<li>supprimer du code HTML les balises <code>&lt;option&gt;</code> du menu déroulant (sauf la première)</li>
+<li>compléter la méthode <code>app.loadVideoGames()</code> fournie</li>
+<li>effectuer une requête HTTP (xhr) sur le bon endpoint de l'API</li>
+<li>une fois la réponse reçue,</li>
+<li>pour chaque jeu vidéo</li>
+<li>ajouter un élément <code>&lt;option&gt;</code> dans le menu déroulant</li>
+</ul>
+<h3 id="3-ajouter-un-jeu-vidéo-heavy_plus_sign">#3 Ajouter un jeu vidéo ➕</h3>
+<h4 id="backend-2">Backend</h4>
+<ul>
+<li>créer la route, le <em>Controller</em> et le <em>Model</em> (si nécessaire)</li>
+<li>dans la méthode de <em>Controller</em></li>
+<li>récupérer toutes les données</li>
+<li>créer un enregistrement dans la base de données</li>
+<li>tester avec <em>Insomnia</em></li>
+<li>oui je sais, on a vu plus précis comme énoncé… mais bon, c'est mieux que rien non ?</li>
+</ul>
+<h4 id="frontend-2">Frontend</h4>
+<ul>
+<li>lors de la soumission du formulaire</li>
+<li>récupérer toutes les données du formulaire</li>
+<li>effectuer une requête HTTP (xhr) sur le bon endpoint de l'API, et avec les données</li>
+<li>une fois la réponse reçue et selon la réponse reçue</li>
+<li>afficher un message de succès</li>
+<li>afficher un message d'échec</li>
+</ul>
+<h2 id="bonus-rainbow">Bonus 🌈</h2>
+<p><a href="bonus.md">Par ici</a> les bonus !</p>

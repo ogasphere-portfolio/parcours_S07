@@ -1,0 +1,126 @@
+<h1 id="documentation-de-lapi">Documentation de l'API</h1>
+<table>
+<thead>
+<tr>
+<th>Numero</th>
+<th>Endpoint</th>
+<th>Méthode HTTP</th>
+<th>Donnée(s) à transmettre</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>/videogames</code></td>
+<td>GET</td>
+<td>-</td>
+<td>Récupération des données de tous les jeux vidéos</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>/videogames</code></td>
+<td>POST</td>
+<td><strong>name</strong>, editor, status</td>
+<td>Ajout d'un jeu vidéo</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>/videogames/[id]</code></td>
+<td>GET</td>
+<td>-</td>
+<td>Récupération des données du jeu vidéo dont l'id est fourni</td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>/videogames/[id]</code></td>
+<td>PUT</td>
+<td>name, editor, status</td>
+<td>Mise à jour d'un jeu vidéo</td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>/videogames/[id]</code></td>
+<td>DELETE</td>
+<td>-</td>
+<td>Suppression d'un jeu vidéo</td>
+</tr>
+<tr>
+<td>6</td>
+<td><code>/videogames/[id]/reviews</code></td>
+<td>GET</td>
+<td>-</td>
+<td>Récupération les données des critiques du jeu vidéo dont l'id est fourni</td>
+</tr>
+<tr>
+<td>7</td>
+<td><code>/platforms</code></td>
+<td>GET</td>
+<td>-</td>
+<td>Récupération des données de toutes les plate-formes</td>
+</tr>
+<tr>
+<td>8</td>
+<td><code>/platforms</code></td>
+<td>POST</td>
+<td>name, manufacturer, status</td>
+<td>Ajout d'une plate-forme</td>
+</tr>
+<tr>
+<td>9</td>
+<td><code>/platforms/[id]</code></td>
+<td>GET</td>
+<td>-</td>
+<td>Récupération des données de la plate-forme dont l'id est fourni</td>
+</tr>
+<tr>
+<td>10</td>
+<td><code>/platforms/[id]</code></td>
+<td>PUT</td>
+<td><strong>name</strong>, manufacturer, status</td>
+<td>Mise à jour d'une plate-forme</td>
+</tr>
+<tr>
+<td>11</td>
+<td><code>/platforms/[id]</code></td>
+<td>DELETE</td>
+<td>-</td>
+<td>Suppression d'une plate-forme</td>
+</tr>
+<tr>
+<td>12</td>
+<td><code>/reviews</code></td>
+<td>GET</td>
+<td>-</td>
+<td>Récupération des données de toutes les critiques</td>
+</tr>
+<tr>
+<td>13</td>
+<td><code>/reviews</code></td>
+<td>POST</td>
+<td><strong>title</strong>, text, author, publication<em>date, display</em>note, gameplay<em>note, scenario</em>note, lifetime<em>note, <strong>videogame</em>id</strong>, <strong>platform_id</strong>, status</td>
+<td>Ajout d'une critique</td>
+</tr>
+<tr>
+<td>14</td>
+<td><code>/reviews/[id]</code></td>
+<td>GET</td>
+<td>-</td>
+<td>Récupération des données de la critique dont l'id est fourni</td>
+</tr>
+<tr>
+<td>15</td>
+<td><code>/reviews/[id]</code></td>
+<td>PUT</td>
+<td>title, text, author, publication<em>date, display</em>note, gameplay<em>note, scenario</em>note, lifetime<em>note, videogame</em>id, platform_id, status</td>
+<td>Mise à jour d'une critique</td>
+</tr>
+<tr>
+<td>16</td>
+<td><code>/reviews/[id]</code></td>
+<td>DELETE</td>
+<td>-</td>
+<td>Suppression d'une critique</td>
+</tr>
+</tbody>
+</table>

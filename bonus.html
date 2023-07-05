@@ -1,0 +1,19 @@
+<h1 id="bonus-rainbow">Bonus 🌈</h1>
+<h2 id="1-reviews-complètes">#1 Reviews complètes</h2>
+<ul>
+<li>actuellement, il manque des informations dans chaque review affichée 🤔</li>
+<li>modifier le code côté <em>Backend</em> du <em>Endpoint</em> pour ajouter ces informations dans la réponse</li>
+<li>le code nécessaire dans <em>VideogameController</em> est déjà en place</li>
+<li>mais il manque la configuration des <em>relations</em> nécessaires</li>
+<li>regarde du côté de <a href="https://laravel.com/docs/5.8/eloquent-relationships">la doc Eloquent à propos des <em>Relationships</em></a> 💪</li>
+<li>modifier le code côté <em>Frontend</em> pour utiliser ces nouvelles informations et les ajouter dans le DOM</li>
+</ul>
+<h2 id="2-un-peu-de-ux">#2 Un peu de UX</h2>
+<p>Actuellement, sauf si tu l'as déjà mis en place par toi même, une fois l'ajout d'un jeu vidéo effectué, l'utilisateur doit actuellement recharger la page pour voir le jeu vidéo ajouté 😠</p>
+<p>Donc on va ajouter un peu de code côté <em>Frontend</em> 😌</p>
+<ul>
+<li>après la réponse de succès de l'ajout</li>
+<li>récupérer les données envoyées en réponse</li>
+<li>fermer la fenêtre <em>Modal</em> si ce n'est pas déjà fait</li>
+<li>ajouter l'<code>&lt;option&gt;</code> dans le menu déroulant à partir des données reçues</li>
+</ul>
